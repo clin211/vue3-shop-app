@@ -12,7 +12,7 @@ const request = axios.create({
     /**
      * 服务基本网址
      */
-    baseURL: 'http://127.0.0.1:8199',
+    // baseURL: '/api',
 
     /**
      * 超时
@@ -35,7 +35,6 @@ request.interceptors.request.use(
 // 添加响应拦截器
 request.interceptors.response.use(
     response => {
-        console.log('🚀 ~ response:', response);
         // 对响应数据做点什么
         const data = response.data;
         if (data.code !== 1) {
@@ -74,6 +73,7 @@ request.interceptors.response.use(
         return response.data;
     },
     error => {
+        console.log('🚀 ~ error:', error);
         // 对响应错误做点什么
         showNotify({ type: 'danger', message: '系统繁忙', duration: 1500 });
 

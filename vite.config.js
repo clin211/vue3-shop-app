@@ -9,35 +9,30 @@ import progress from 'vite-plugin-progress';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: './',
-  plugins: [
-    vue(),
-    vueJsx(),
-    Components({
-      resolvers: [VantResolver()],
-    }),
-    progress(),
-  ],
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    base: './',
+    plugins: [
+        vue(),
+        vueJsx(),
+        Components({
+            resolvers: [VantResolver()],
+        }),
+        progress(),
+    ],
+    resolve: {
+        alias: {
+            '@': fileURLToPath(new URL('./src', import.meta.url)),
+        },
     },
-  },
-  build: {
-    // outDir: 'ml-mall',
-    // rollupOptions: {
-    //   output: {
-    //     sanitizeFileName(fileName) {
-    //       const match = /^[a-z]:/i.exec(fileName);
-    //       const driveLetter = match ? match[0] : '';
-    //       return (
-    //         driveLetter +
-    //         fileName
-    //           .slice(driveLetter.length)
-    //           .replace(/[\x00-\x1F\x7F<>*#"{}|^[\]`;?:&=+$,]/g, '')
-    //       );
-    //     },
-    //   },
-    // },
-  },
+    build: {},
+    server: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:8199',
+                changeOrigin: true,
+                rewrite: path => path.replace(/^\/api/, ''),
+                logLevel: 'debug', // 启用详细日志
+                secure: false, //忽略安全证书
+            },
+        },
+    },
 });
