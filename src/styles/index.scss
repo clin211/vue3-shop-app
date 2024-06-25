@@ -1,8 +1,112 @@
 html,
 body,
 #app {
-  height: 100%;
-  width: 100%;
-  background: #F6F6F6;
-  --van-card-background: #fff;
+    height: 100%;
+    width: 100%;
+    background: #f6f6f6;
+    --van-card-background: #fff;
+}
+
+.goods {
+    width: 100%;
+    background: rgb(243, 243, 243);
+    margin-bottom: 50px;
+    .goods-header {
+        height: 50px;
+        line-height: 50px;
+        font-size: 16px;
+        font-weight: 500;
+        color: rgb(15, 196, 181);
+        text-align: center;
+    }
+    .goods-box {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-content: space-between;
+        .goods-item {
+            width: 49%;
+            background: white;
+            margin: 2px 0;
+            box-sizing: border-box;
+            .img_box {
+                width: 90%;
+                height: 188px;
+                margin: 10px auto;
+                overflow: hidden;
+            }
+            .goods-desc {
+                text-align: center;
+                .title {
+                    font-size: 0.378rem;
+                    color: #222333;
+                    -webkit-line-clamp: 2;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    word-wrap: break-word;
+                }
+                .price {
+                    font-size: 0.32rem;
+                    color: #1baeae;
+                    margin: 6px 0;
+                }
+            }
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
+}
+
+// 内边距离
+$pad: 8px;
+.body_box {
+    background-color: white;
+    margin: 0 10px;
+    .img_box {
+        width: 100%;
+        text-align: center;
+        img {
+            width: 100%;
+        }
+    }
+    .goods_name {
+        padding: 0 $pad;
+        background-color: white;
+        font-size: 18px;
+    }
+    .brands,
+    .express_prompt {
+        padding: 0 $pad;
+        display: flex;
+        justify-content: space-between;
+        color: #999999;
+        font-size: 14px;
+        margin: 6px 0;
+    }
+    .price {
+        padding: 0 $pad;
+        color: #f63515;
+        font-size: 22px;
+        margin: 6px 0;
+    }
+    .detail {
+        .title {
+            margin: 10px 0;
+            font-weight: bold;
+            font-size: 14px;
+            color: black;
+            text-align: center;
+        }
+        .content {
+            padding: 0 12px;
+            font-size: 16px;
+            color: rgb(84, 84, 84);
+            text-indent: 2em;
+        }
+    }
 }

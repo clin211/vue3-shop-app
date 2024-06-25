@@ -26,7 +26,6 @@ onMounted(async () => {
 // 获取商品数据
 const fetchProductList = async () => {
     const res = await getProductList({ size: 20, page: 1 });
-    console.log('fetch product list:', res);
     if (res.code === 0) {
         commodityData.value = res.data.list;
     }
@@ -35,7 +34,6 @@ const fetchProductList = async () => {
 // 获取轮播图数据
 const fetchCarouselChartData = async () => {
     const res = await getCarouselChartData({ size: 10, page: 1 });
-    console.log('fetch carousel data:', res);
     if (res.code === 0) {
         carouselChartData.value = res.data.list;
     }

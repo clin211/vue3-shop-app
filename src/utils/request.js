@@ -38,7 +38,7 @@ request.interceptors.response.use(
         // 对响应数据做点什么
         const data = response.data;
         if (data.code !== 0) {
-            if (data.code === 0) {
+            if (data.code === 1) {
                 // 代表未登录
                 // 如果当前路径就是/login 又去使用push 就会报重复跳转的错误
                 if (router.currentRoute.value.path !== '/login') {
