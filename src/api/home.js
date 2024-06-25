@@ -7,7 +7,7 @@ import request from '@/utils/request';
  */
 export const getProductList = queryObj =>
     request({
-        method: 'POST',
+        method: 'GET',
         url: '/frontend/goods/list'.concat('?', query(queryObj)),
     });
 
@@ -18,10 +18,7 @@ export const getProductList = queryObj =>
 export const getCarouselChartData = queryObj =>
     request({
         method: 'GET',
-        url: '/api/frontend/frontend/rotation/list'.concat(
-            '?',
-            query(queryObj)
-        ),
+        url: '/frontend/frontend/rotation/list'.concat('?', query(queryObj)),
     });
 
 /**
@@ -30,6 +27,6 @@ export const getCarouselChartData = queryObj =>
  */
 export const getClassification = parent_id =>
     request({
-        method: 'POST',
+        method: 'GET',
         url: '/frontend/category/list'.concat('?', query({ parent_id })),
     });

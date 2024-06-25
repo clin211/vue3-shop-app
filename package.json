@@ -24,7 +24,7 @@
     "postcss": "^8.4.38",
     "postcss-preset-env": "^7.8.3",
     "postcss-pxtorem": "^6.1.0",
-    "sass": "^1.75.0",
+    "sass": "^1.77.6",
     "unplugin-auto-import": "^0.12.2",
     "unplugin-vue-components": "^0.22.12",
     "vite": "^4.0.4",

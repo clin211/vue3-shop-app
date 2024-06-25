@@ -12,7 +12,7 @@ const request = axios.create({
     /**
      * 服务基本网址
      */
-    // baseURL: '/api',
+    baseURL: '/api',
 
     /**
      * 超时
@@ -37,7 +37,7 @@ request.interceptors.response.use(
     response => {
         // 对响应数据做点什么
         const data = response.data;
-        if (data.code !== 1) {
+        if (data.code !== 0) {
             if (data.code === 0) {
                 // 代表未登录
                 // 如果当前路径就是/login 又去使用push 就会报重复跳转的错误

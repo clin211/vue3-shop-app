@@ -18,16 +18,16 @@ const carouselChartData = ref([]);
 const commodityData = ref([]);
 
 onMounted(async () => {
-    await fetchCarouselChartData();
-    await fetchProductList();
-    await getClassification(1);
+    fetchCarouselChartData();
+    fetchProductList();
+    getClassification(1);
 });
 
 // 获取商品数据
 const fetchProductList = async () => {
     const res = await getProductList({ size: 20, page: 1 });
     console.log('fetch product list:', res);
-    if (res.code === 1) {
+    if (res.code === 0) {
         commodityData.value = res.data.list;
     }
 };
@@ -36,7 +36,7 @@ const fetchProductList = async () => {
 const fetchCarouselChartData = async () => {
     const res = await getCarouselChartData({ size: 10, page: 1 });
     console.log('fetch carousel data:', res);
-    if (res.code === 1) {
+    if (res.code === 0) {
         carouselChartData.value = res.data.list;
     }
 };
@@ -52,7 +52,11 @@ const fetchCarouselChartData = async () => {
                     class="good-item"
                     tag="li"
                     :to="`/goods/${item.link}`">
-                    <img :src="item.pic_url" :alt="item.pic_url" />
+                    <van-image
+                        width="100%"
+                        height="8rem"
+                        :src="item.pic_url"
+                        :alt="item.pic_url" />
                 </router-link>
             </van-swipe-item>
         </van-swipe>
@@ -69,9 +73,10 @@ const fetchCarouselChartData = async () => {
 <style lang="scss" scoped>
 .my-swipe .van-swipe-item {
     width: 100%;
-    height: 168px;
     img {
         width: 100%;
+        height: inherit;
+        object-fit: contain;
     }
 }
 </style>
