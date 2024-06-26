@@ -55,6 +55,7 @@
 <script setup>
 import { useRoute, useRouter } from 'vue-router';
 import { ref, onMounted } from 'vue';
+import { showSuccessToast } from 'vant';
 import { getGoodsDetail } from '@/api/goods';
 import { addCart, editCart } from '@/api/cart';
 import { useCartStore } from '@/stores/cart';
@@ -101,18 +102,24 @@ const toggleStar = async goodsInfo => {
  * 添加到购物车事件
  */
 const addToCart = async id => {
-    console.table(cartStore.data);
     const hasGoods = cartStore.data?.find(it => it.goods_id == id);
+    let res;
     if (hasGoods) {
-        const res = await editCart({
-            goods_id: id,
+        res = await editCart({
+            goods_options_id: id,
             count: hasGoods.count + 1,
             id: hasGoods.id,
         });
-        console.table(res);
+        console.log(res);
     } else {
-        const res = await addCart({ goods_id: id, count: 1 });
-        console.table(res);
+        res = await addCart({ goods_options_id: id, count: 1 });
+        console.log(res);
+    }
+    if (res?.code === 0) {
+        showSuccessToast({
+            message: '添加购物车成功！',
+            duration: 1500,
+        });
     }
     cartStore.changeCart();
 };
