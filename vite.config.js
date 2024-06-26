@@ -9,7 +9,7 @@ import progress from 'vite-plugin-progress';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    base: './',
+    base: '/shop/',
     plugins: [
         vue(),
         vueJsx(),
@@ -23,7 +23,9 @@ export default defineConfig({
             '@': fileURLToPath(new URL('./src', import.meta.url)),
         },
     },
-    build: {},
+    build: {
+        outDir: 'shop',
+    },
     server: {
         proxy: {
             '/api': {

@@ -1,0 +1,39 @@
+name: Deploy GitHub Pages and remote server
+
+# 触发条件：在 push 到 main 分支后
+on:
+  push:
+    branches:
+      - main
+
+# 任务
+jobs:
+  build-and-deploy:
+    # 服务器环境：最新版 Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      # 拉取代码
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      # 1、生成静态文件
+      - name: Build
+        run: yarn && yarn docs:build
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete"
+          # 源目录，相对于$GITHUB_WORKSPACE根目录的路径
+          SOURCE: "./shop"
+          # 服务器域名/IP
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          # 服务器默认用户名为root
+          REMOTE_USER: root
+          # 远程服务器目录（将dist目录下的所有文件拷贝到此目录）
+          TARGET: "/home/www/"
+          # 排除 node_modules 目录
+          EXCLUDE: "/node_modules/"

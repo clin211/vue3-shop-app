@@ -6,7 +6,7 @@ import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
-
+console.log('import meta env base url:', import.meta.env.BASE_URL);
 const router = createRouter({
     history: createWebHashHistory(import.meta.env.BASE_URL),
     routes: [
