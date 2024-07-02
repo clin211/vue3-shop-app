@@ -20,7 +20,7 @@ jobs:
 
       # 1、生成静态文件
       - name: Build
-        run: yarn && yarn build
+        run: pnpm && pnpm build
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@main
