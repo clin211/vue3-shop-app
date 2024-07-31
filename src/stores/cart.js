@@ -7,9 +7,11 @@ export const useCartStore = defineStore('cart', () => {
     const data = ref([]);
     const changeCart = async () => {
         const res = await getCartList({ page: 1, limit: 100 });
+        console.log('🚀 ~ changeCart ~ res:', res)
         if (res.code === 0) {
             count.value = res.data.count;
             data.value = res.data.list;
+            console.log('res data:', res.data)
         } else {
             // 可以设置一个错误状态，并在界面上反馈给用户
         }

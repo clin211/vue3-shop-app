@@ -45,6 +45,6 @@ export const myArticleList = queyObj =>
 
 export const getArticleInfo = id =>
     request({
-        method: 'POST',
+        method: 'GET',
         url: '/frontend/article/detail/'.concat('?', query({ id })),
     });
